@@ -1,9 +1,11 @@
 const express = require("express");
+const marioRoute = require("./mario/mario-route.js");
 
 const server = express();
 const port = process.env.PORT || 5000;
 
 server.use(express.json());
+server.use("/mario/", marioRoute);
 
 server.get("/", (req, res) => {
   res.status(200).json({ message: "Welcome to Nolan's world of Mario" });

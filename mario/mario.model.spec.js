@@ -15,6 +15,6 @@ describe(" Mario-chars model", () => {
 
   test("findById", async () => {
     const res = await marioMod.findById(1);
-    expect(res.name).toBe(/nolan/i);
+    expect(res.name).toBe("Nolan");
   });
 });
