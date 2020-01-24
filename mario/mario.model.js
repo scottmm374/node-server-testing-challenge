@@ -4,11 +4,7 @@ function find() {
   return db("mario-chars");
 }
 
-function findById(id) {
-  return db("mario-chars")
-    .where({ id })
-    .first();
-}
+function findById(id) {}
 
 async function insert(char) {}
 
