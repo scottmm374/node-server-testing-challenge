@@ -10,7 +10,10 @@ function findById(id) {
     .first();
 }
 
-async function insert(char) {}
+async function insert(char) {
+  const [id] = await db("mario-chars").insert(char);
+  return findById(id);
+}
 
 async function update(id, char) {}
 
