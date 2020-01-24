@@ -1,5 +1,5 @@
 module.exports = {
-  development: {
+  dev: {
     client: "sqlite3",
     connection: {
       filename: "./data/mario.db3"
