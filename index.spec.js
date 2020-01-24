@@ -21,3 +21,12 @@ test("Get Mario Character list", async () => {
   expect(res.body[0].id).toBe(1);
   expect(res.body[0].name).toBe("Nolan");
 });
+
+test("insert new character", async () => {
+  const res = await supertest(server)
+    .post("/mario")
+    .send({ name: "Mario", description: "The Hero" });
+  expect(res.status).toBe(201);
+  expect(res.type).toBe("application/json");
+  expect(res.body).toEqual({ id: 4, name: "Mario", description: "The Hero" });
+});
