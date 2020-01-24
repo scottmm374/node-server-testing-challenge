@@ -30,3 +30,18 @@ test("insert new character", async () => {
   expect(res.type).toBe("application/json");
   expect(res.body).toEqual({ id: 4, name: "Mario", description: "The Hero" });
 });
+
+// not passing, something with ID, need to look how to sed in test properly.
+
+// test("update character", async () => {
+//   const res = await supertest(server)
+//     .put("/mario/:id")
+//     .send({ id: 3, name: "BonziBill" });
+//   expect(res.status).toBe(201);
+//   expect(res.type).toBe("application/json");
+//   expect(res.body).toEqual({
+//     id: 3,
+//     name: "BonziBill",
+//     description: "A variety of the BulletBill but bigger"
+//   });
+// });

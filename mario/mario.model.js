@@ -15,9 +15,18 @@ async function insert(char) {
   return findById(id);
 }
 
-async function update(id, char) {}
+async function update(id, char) {
+  await db("mario-chars")
+    .where({ id })
+    .update(char);
+  return findById(id);
+}
 
-function remove(id) {}
+function remove(id) {
+  return db("mario-chars")
+    .where({ id })
+    .del();
+}
 
 module.exports = {
   find,

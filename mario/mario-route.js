@@ -22,4 +22,19 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.put("/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const char = req.body;
+  try {
+    const findChar = await marioMod.findById(id);
+    if (findChar) {
+      const updateChar = await marioMod.update(char);
+      res.status(201).json(updateChar);
+    } else {
+      res.status(404).json({ message: "Could not find id" });
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 module.exports = router;

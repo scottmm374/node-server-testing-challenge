@@ -18,19 +18,6 @@ describe(" Mario-chars model", () => {
     expect(res.name).toBe("Nolan");
   });
 
-  // not passing?
-  // ReferenceError: Cannot access 'res' before initialization
-
-  //   20 |
-  //   21 |   test("insert", async () => {
-  // > 22 |     const res = await marioMod.insert(res);
-  //      |                                       ^
-  //   23 |     expect("mario-chars").toHaveLength(4);
-  //   24 |   });
-  //   25 | });
-
-  //   at Object.<anonymous> (mario/mario.model.spec.js:22:39)
-
   test("insert", async () => {
     // dont forget to mock insert something!
     await marioMod.insert({
@@ -40,5 +27,17 @@ describe(" Mario-chars model", () => {
     });
     const chars = await db("mario-chars").select();
     expect(chars).toHaveLength(4);
+  });
+
+  test("update", async () => {
+    await marioMod.update(3, { name: "BonziBill" });
+    const char = await marioMod.findById(3);
+    expect(char.name).toBe("BonziBill");
+  });
+
+  test("remove", async () => {
+    await marioMod.remove(4);
+    const char = await marioMod.find();
+    expect(char).toHaveLength(3);
   });
 });
