@@ -31,17 +31,36 @@ test("insert new character", async () => {
   expect(res.body).toEqual({ id: 4, name: "Mario", description: "The Hero" });
 });
 
-// not passing, something with ID, need to look how to sed in test properly.
+test("update character", async () => {
+  const res = await supertest(server)
+    .put(`/mario/3`)
+    .send({ name: "BonziBill" });
+  expect(res.status).toBe(201);
+  expect(res.type).toBe("application/json");
+  expect(res.body).toEqual({
+    id: 3,
+    name: "BonziBill",
+    description: "A variety of the BulletBill but bigger"
+  });
+});
 
-// test("update character", async () => {
-//   const res = await supertest(server)
-//     .put("/mario/:id")
-//     .send({ id: 3, name: "BonziBill" });
-//   expect(res.status).toBe(201);
-//   expect(res.type).toBe("application/json");
-//   expect(res.body).toEqual({
-//     id: 3,
-//     name: "BonziBill",
-//     description: "A variety of the BulletBill but bigger"
-//   });
-// });
+test("delete", async () => {
+  const res = await supertest(server).del(`/mario/4`);
+  expect(res.status).toBe(200);
+  expect(res.type).toBe("application/json");
+});
+
+// ! Shows passing tests... YAY!
+
+// PASS  ./index.spec.js
+// √ welcome route (382ms)
+// √ Get Mario Character list (338ms)
+// √ insert new character (507ms)
+// √ update character (566ms)
+// √ delete (351ms)
+
+// Test Suites: 1 passed, 1 total
+// Tests:       5 passed, 5 total
+// Snapshots:   0 total
+// Time:        5.112s
+// Ran all test suites related to changed files.
